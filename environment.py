@@ -7,10 +7,7 @@ from PyQt5.QtWidgets import QApplication
 import sys
 
 class TetrisEnv(Env):
-
-
     def __init__(self):
-
         # Create an actionspace with 5 actions (nothing, rotate, left, right, hard drop)
         self.action_space = spaces.Discrete(5)
 
