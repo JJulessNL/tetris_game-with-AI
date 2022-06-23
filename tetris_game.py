@@ -69,7 +69,15 @@ class Tetris(QMainWindow):
         gamestate = {}
         gamestate['score'] = self.tboard.score
         gamestate['is_alive'] = self.isStarted
-        gamestate['board'] = BOARD_DATA.backBoard
+        
+        # Transform BOARD_DATA.blackBoard to 10x22 matrix
+        black_board = []
+        for i in range(22):
+            black_board.append([])
+            for j in range(10):
+                black_board[i].append(BOARD_DATA.backBoard[i+j*10])
+
+        gamestate['board'] = black_board
 
         return gamestate
 
