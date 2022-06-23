@@ -31,7 +31,7 @@ class TetrisEnv(Env):
         observation = gamestate['board']
 
         # Get reward
-        reward = self.game._get_reward(gamestate, action)
+        reward = self._get_reward(gamestate, action)
 
         # Check if the game is over
         if self.game_over():
