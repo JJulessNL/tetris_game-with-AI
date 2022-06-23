@@ -127,7 +127,7 @@ class TetrisEnv(Env):
         self.game.restartGame()
 
         # Set input to none
-        self._input(0)
+        self._give_input(0)
 
         # Read an observation
         gamestate = self.game.receive_gamestate()
