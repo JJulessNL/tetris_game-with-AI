@@ -9,7 +9,7 @@ from PyQt5.QtGui import QPainter, QColor
 from tetris_model import BOARD_DATA, Shape
 from tetris_ai import TETRIS_AI
 
-# TETRIS_AI = None
+TETRIS_AI = None
 
 class Tetris(QMainWindow):
     def __init__(self):
@@ -64,6 +64,26 @@ class Tetris(QMainWindow):
 
         BOARD_DATA.createNewPiece()
         self.timer.start(self.speed, self)
+
+    def receive_gamestate(self):
+        gamestate = {}
+        gamestate['score'] = self.tboard.score
+        gamestate['is_alive'] = self.isStarted
+        gamestate['board'] = BOARD_DATA.backBoard
+
+        return gamestate
+
+    def restartGame(self):
+        gamestate = self.receive_gamestate()
+        print(gamestate['board'])
+        self.isStarted = False
+        self.isPaused = False
+        self.nextMove = None
+        self.lastShape = Shape.shapeNone
+        self.tboard.score = 0
+        BOARD_DATA.clear()
+        self.tboard.msg2Statusbar.emit(str(self.tboard.score))
+        self.start()
 
     def pause(self):
         if not self.isStarted:
@@ -122,6 +142,9 @@ class Tetris(QMainWindow):
             return
             
         if self.isPaused:
+            return
+        elif key == Qt.Key_R:
+            self.restartGame()
             return
         elif key == Qt.Key_Left:
             BOARD_DATA.moveLeft()
