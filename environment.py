@@ -12,7 +12,7 @@ class TetrisEnv(Env):
         self.action_space = spaces.Discrete(5)
 
         # Create a observation space with the board data, 0 for empty, 1 untill 7 for filled, depending on blocktype
-        self.observation_space = spaces.Box(low=0, high=7, shape=(BOARD_DATA.width, BOARD_DATA.height))
+        self.observation_space = spaces.Box(low=0, high=7, shape=(BOARD_DATA.height, BOARD_DATA.width))
 
         # Initialize pynput controller used for simulating keypresses
         self.keyboard = Controller()
