@@ -16,11 +16,10 @@ class TetrisEnv(Env):
 
         # Initialize pynput controller used for simulating keypresses
         self.keyboard = Controller()
-    
-        app = QApplication([])
+
+        # Initialize the game
         self.game = Tetris()
-        sys.exit(app.exec_())
-        #self.game.start()
+        self.game.start()
 
     def step(self, action: int):
         self._give_input(action)
@@ -46,6 +45,8 @@ class TetrisEnv(Env):
             done = False
 
         info = {}
+
+        self.game.updateWindow()
 
         return observation, reward, done, info
 
