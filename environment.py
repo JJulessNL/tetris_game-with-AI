@@ -46,7 +46,7 @@ class TetrisEnv(Env):
                 file.write(str(self.total_reward["total"]) + " " + str(self.score) + "\n")
             done = True
         else:
-            done = True
+            done = False
 
         info = {}
 
