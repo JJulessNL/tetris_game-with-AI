@@ -50,7 +50,7 @@ class TetrisEnv(Env):
 
         info = {}
 
-        return gamestate, reward, done, info
+        return observation, reward, done, info
 
     # Input function
     def _give_input(self, action: int):
